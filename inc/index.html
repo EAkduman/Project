@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocHub - Dokümantasyon Portalı</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">DocHub</div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Dokümanlarda ara..." id="searchInput">
+            <button class="search-btn" onclick="performSearch()">🔍</button>
+        </div>
+        <div class="user-menu">
+            <div class="user-avatar">IT</div>
+        </div>
+    </header>
+    <div class="container">
+
+            <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Ana Menü</div>
+                <button class="nav-item active" onclick="showHome()">
+                    <span class="icon">🏠</span>
+                    <span class="text">Ana Sayfa</span>
+                </button>
+                <button class="nav-item" onclick="showSection('recent')">
+                    <span class="icon">🕒</span>
+                    <span class="text">Son Görüntülenen</span>
+                </button>
+                <button class="nav-item" onclick="showSection('favorites')">
+                    <span class="icon">⭐</span>
+                    <span class="text">Favoriler</span>
+                </button>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Kategoriler</div>
+                <button class="nav-item" onclick="showCategory('infrastructure')">
+                    <span class="icon">🖥️</span>
+                    <span class="text">Altyapı</span>
+                    <span class="count">12</span>
+                </button>
+                <button class="nav-item" onclick="showCategory('development')">
+                    <span class="icon">💻</span>
+                    <span class="text">Geliştirme</span>
+                    <span class="count">8</span>
+                </button>
+                <button class="nav-item" onclick="showCategory('security')">
+                    <span class="icon">🔒</span>
+                    <span class="text">Güvenlik</span>
+                    <span class="count">6</span>
+                </button>
+                <button class="nav-item" onclick="showCategory('procedures')">
+                    <span class="icon">📋</span>
+                    <span class="text">Prosedürler</span>
+                    <span class="count">15</span>
+                </button>
+                <button class="nav-item" onclick="showCategory('troubleshooting')">
+                    <span class="icon">🔧</span>
+                    <span class="text">Sorun Giderme</span>
+                    <span class="count">9</span>
+                </button>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">Takımlar</div>
+                <button class="nav-item" onclick="showTeam('backend')">
+                    <span class="icon">⚙️</span>
+                    <span class="text">Backend Ekibi</span>
+                </button>
+                <button class="nav-item" onclick="showTeam('frontend')">
+                    <span class="icon">🎨</span>
+                    <span class="text">Frontend Ekibi</span>
+                </button>
+                <button class="nav-item" onclick="showTeam('devops')">
+                    <span class="icon">☁️</span>
+                    <span class="text">DevOps Ekibi</span>
+                </button>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Content -->
+            <div id="homeContent">
+                <div class="breadcrumb">
+                    <a href="#" onclick="showHome()">Ana Sayfa</a>
+                </div>
+
+                <div class="page-header">
+                    <h1 class="page-title">Dokümantasyon Portalına Hoş Geldiniz</h1>
+                    <div class="page-meta">
+                        <span>Son güncelleme: 19 Haziran 2025</span>
+                        <span>•</span>
+                        <span>Toplam 50 doküman</span>
+                    </div>
+                </div>
+
+                <div class="page-actions">
+                    <button class="btn btn-primary" onclick="createDocument()">➕ Yeni Doküman</button>
+                    <button class="btn" onclick="showTemplates()">📄 Şablonlar</button>
+                    <button class="btn" onclick="showRecent()">🕒 Son Düzenlenen</button>
+                </div>
+
+                <!-- Popular Documents -->
+                <h2 style="margin: 32px 0 16px; color: var(--gray-800);">Popüler Dokümanlar</h2>
+                <div class="content-grid">
+                    <div class="card" onclick="openDocument('server-setup')">
+                        <div class="card-header">
+                            <div class="card-icon">🖥️</div>
+                            <div class="card-title">Sunucu Kurulum Rehberi</div>
+                        </div>
+                        <div class="card-description">
+                            Linux sunucu kurulumu ve temel konfigürasyon adımları
+                        </div>
+                        <div class="card-meta">
+                            <span>Ahmet Yılmaz • 2 gün önce</span>
+                            <span class="tag">Altyapı</span>
+                        </div>
+                    </div>
+
+                    <div class="card" onclick="openDocument('api-docs')">
+                        <div class="card-header">
+                            <div class="card-icon">🔌</div>
+                            <div class="card-title">API Dokümantasyonu</div>
+                        </div>
+                        <div class="card-description">
+                            RESTful API endpoint'leri ve kullanım örnekleri
+                        </div>
+                        <div class="card-meta">
+                            <span>Mehmet Demir • 1 hafta önce</span>
+                            <span class="tag">Geliştirme</span>
+                        </div>
+                    </div>
+
+                    <div class="card" onclick="openDocument('security-policy')">
+                        <div class="card-header">
+                            <div class="card-icon">🔒</div>
+                            <div class="card-title">Güvenlik Politikası</div>
+                        </div>
+                        <div class="card-description">
+                            Şirket güvenlik kuralları ve uygulanması gereken prosedürler
+                        </div>
+                        <div class="card-meta">
+                            <span>Fatma Özkan • 3 gün önce</span>
+                            <span class="tag">Güvenlik</span>
+                        </div>
+                    </div>
+
+                    <div class="card" onclick="openDocument('deployment-guide')">
+                        <div class="card-header">
+                            <div class="card-icon">🚀</div>
+                            <div class="card-title">Deployment Rehberi</div>
+                        </div>
+                        <div class="card-description">
+                            Uygulama dağıtım süreci ve best practice'ler
+                        </div>
+                        <div class="card-meta">
+                            <span>Can Arslan • 5 gün önce</span>
+                            <span class="tag">DevOps</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <h2 style="margin: 32px 0 16px; color: var(--gray-800);">Hızlı Erişim</h2>
+                <div class="content-grid">
+                    <div class="card" onclick="showCategory('procedures')">
+                        <div class="card-header">
+                            <div class="card-icon">📋</div>
+                            <div class="card-title">Tüm Prosedürler</div>
+                        </div>
+                        <div class="card-description">
+                            Standart operasyon prosedürleri ve iş akışları
+                        </div>
+                    </div>
+
+                    <div class="card" onclick="showCategory('troubleshooting')">
+                        <div class="card-header">
+                            <div class="card-icon">🔧</div>
+                            <div class="card-title">Sorun Giderme</div>
+                        </div>
+                        <div class="card-description">
+                            Yaygın sorunlar ve çözüm yöntemleri
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="searchResults" class="search-results">
+                <div class="page-header">
+                    <h1 class="page-title">Arama Sonuçları</h1>
+                    <div class="page-meta">
+                        <span id="searchQuery"></span> için sonuçlar
+                    </div>
+                </div>
+                <div id="searchResultsList"></div>
+            </div>
+
+            <!-- Document Content -->
+            <div id="documentContent" class="document-content">
+                <div class="breadcrumb">
+                    <a href="#" onclick="showHome()">Ana Sayfa</a>
+                    <span class="separator">></span>
+                    <span id="docBreadcrumb">Doküman</span>
+                </div>
+
+                <div class="page-header">
+                    <h1 class="page-title" id="docTitle">Doküman Başlığı</h1>
+                    <div class="page-meta">
+                        <span id="docAuthor">Yazar</span>
+                        <span>•</span>
+                        <span id="docDate">Tarih</span>
+                        <span>•</span>
+                        <span id="docViews">Görüntüleme</span>
+                    </div>
+                </div>
+
+                <div class="page-actions">
+                    <button class="btn">✏️ Düzenle</button>
+                    <button class="btn">💬 Yorum Yap</button>
+                    <button class="btn">📤 Paylaş</button>
+                    <button class="btn">⭐ Favorilere Ekle</button>
+                </div>
+
+                <div id="docBody">
+                    <!-- Document content will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+<script src="js/script.js" async></script>
+</body>
+</html>
